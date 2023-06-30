@@ -5,7 +5,7 @@ import Toaster from "./toaster";
 import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] });
-
+// 
 export const metadata = {
   title: "ChatScan – Chat with On-Chain data using natural language",
   description:
