@@ -41,7 +41,12 @@ export async function POST(req: Request) {
   }
 
   const { messages } = await req.json();
-
+  // add a message at the beginning of the conversation
+  messages.unshift({
+    role: "system", 
+    content: "Don't make assumptions about what values to plug into functions. Ask for clarification if a user request is ambiguous. If a block number is not mentioned, assume it's 0. If not given a pool address for a function that requires one, ask the user to provide one. Always format the response in a table when possible."
+  })
+  // console.log("messages recieved:", messages)
   // check if the conversation requires a function call to be made
   const initialResponse = await openai.createChatCompletion({
     model: "gpt-3.5-turbo-0613",
@@ -50,6 +55,7 @@ export async function POST(req: Request) {
     function_call: "auto",
   });
   const initialResponseJson = await initialResponse.json();
+  // console.log("message recieved:", initialResponseJson)
   const initialResponseMessage = initialResponseJson?.choices?.[0]?.message;
 
   let finalResponse;
@@ -59,7 +65,7 @@ export async function POST(req: Request) {
     const functionResponse = await runFunction(name, JSON.parse(args));
 
     finalResponse = await openai.createChatCompletion({
-      model: "gpt-3.5-turbo-0613",
+      model: "gpt-3.5-turbo-16k",
       stream: true,
       messages: [
         ...messages,
@@ -71,10 +77,18 @@ export async function POST(req: Request) {
         },
       ],
     });
-    // Convert the response into a friendly text-stream
+    // Convert the response into a friendly text-StreamingTextResponsec
+    // const msg = await finalResponse.json();
+    // console.log("final response:", msg);
+    try {
     const stream = OpenAIStream(finalResponse);
+        return new StreamingTextResponse(stream);
+
+    }
+    catch (e) {
+      console.log(e)
+    }
     // Respond with the stream
-    return new StreamingTextResponse(stream);
   } else {
     // if there's no function call, just return the initial response
     // but first, we gotta convert initialResponse into a stream with ReadableStream
@@ -88,7 +102,7 @@ export async function POST(req: Request) {
             setTimeout(
               r,
               // get a random number between 10ms and 30ms to simulate a random delay
-              Math.floor(Math.random() * 20 + 10),
+              Math.floor(Math.random() * 5 + 5),
             ),
           );
         }

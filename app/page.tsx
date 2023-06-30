@@ -12,9 +12,10 @@ import Textarea from "react-textarea-autosize";
 import { toast } from "sonner";
 
 const examples = [
-  "Get me the top 5 stories on Hacker News in markdown table format. Use columns like title, link, score, and comments.",
-  "Summarize the comments in the top hacker news story.",
-  "What is the top story on Hacker News right now?",
+  "Search all pools trading UNI and return their 24H volume, fees collected, and pairs traded",
+  "Get a V3 snapshot for the pool PEPE/ETH, at address 0x11950d141ecb863f01007add7d1a342041227b58 at block  17294375",
+  "What pools are trading LDO with the most liquidity?",
+  "Get recent swaps for address 0x9c8b59443fd54567e33805fb389c3d9b9196ed2e",
 ];
 
 export default function Chat() {
@@ -42,17 +43,19 @@ export default function Chat() {
   const disabled = isLoading || input.length === 0;
 
   return (
-    <main className="flex flex-col items-center justify-between pb-40">
-      <div className="absolute top-5 hidden w-full justify-between px-5 sm:flex">
+    <main className=" flex flex-col items-center justify-between pb-40">
+      <div className="absolute top-5   hidden w-full justify-between px-5 sm:flex">
         <a
-          href="/deploy"
-          target="_blank"
-          className="rounded-lg p-2 transition-colors duration-200 hover:bg-stone-100 sm:bottom-auto"
+          href="/"
+          // target="_blank"
+          className="rounded-lg  transition-colors duration-200 hover:bg-stone-100 sm:bottom-auto"
         >
-          <VercelIcon />
+          {/* <VercelIcon /> */}
+
+          <span className="blockv2 h-8 w-auto sm:h-10">UniChat</span>
         </a>
         <a
-          href="/github"
+          href="https://github.com/0xaaiden/UniChat"
           target="_blank"
           className="rounded-lg p-2 transition-colors duration-200 hover:bg-stone-100 sm:bottom-auto"
         >
@@ -82,7 +85,7 @@ export default function Chat() {
                 )}
               </div>
               <ReactMarkdown
-                className="prose mt-1 w-full break-words prose-p:leading-relaxed"
+                className="prose mt-1 w-full overflow-auto break-words prose-p:leading-relaxed"
                 remarkPlugins={[remarkGfm]}
                 components={{
                   // open links in new tab
@@ -100,12 +103,12 @@ export default function Chat() {
         <div className="border-gray-200sm:mx-0 mx-5 mt-20 max-w-screen-md rounded-md border sm:w-full">
           <div className="flex flex-col space-y-4 p-7 sm:p-10">
             <h1 className="text-lg font-semibold text-black">
-              Welcome to ChatHN!
+              Welcome to UniChat!
             </h1>
             <p className="text-gray-500">
               This is an{" "}
               <a
-                href="https://github.com/steven-tey/chathn"
+                href="https://github.com/0xaaiden/unichat"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-medium underline underline-offset-4 transition-colors hover:text-black"
@@ -121,25 +124,21 @@ export default function Chat() {
               >
                 OpenAI Functions
               </a>{" "}
-              and{" "}
+              to interact with{" "}
               <a
-                href="https://sdk.vercel.ai/docs"
+                href="https://uniswap.org"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-medium underline underline-offset-4 transition-colors hover:text-black"
               >
-                Vercel AI SDK
-              </a>{" "}
-              to interact with the{" "}
-              <a
-                href="https://github.com/HackerNews/API"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium underline underline-offset-4 transition-colors hover:text-black"
-              >
-                Hacker News API
+                Uniswap V3
               </a>{" "}
               with natural language.
+            </p>
+            <p className="text-gray-500">
+              You can ask it about pool snapshots, latest block data, search
+              token pair pools, fetch pool liquidity, and source user-specific
+              swap data.
             </p>
           </div>
           <div className="flex flex-col space-y-4 border-t border-gray-200 bg-gray-50 p-7 sm:p-10">
@@ -211,34 +210,16 @@ export default function Chat() {
             rel="noopener noreferrer"
             className="transition-colors hover:text-black"
           >
-            OpenAI Functions
+            OpenAI Functions.
           </a>{" "}
-          and{" "}
+          Inspired by{" "}
           <a
-            href="https://sdk.vercel.ai/docs"
+            href="https://github.com/steven-tey"
             target="_blank"
             rel="noopener noreferrer"
             className="transition-colors hover:text-black"
           >
-            Vercel AI SDK
-          </a>
-          .{" "}
-          <a
-            href="https://github.com/steven-tey/chathn"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="transition-colors hover:text-black"
-          >
-            View the repo
-          </a>{" "}
-          or{" "}
-          <a
-            href="https://vercel.com/templates/next.js/chathn"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="transition-colors hover:text-black"
-          >
-            deploy your own
+            Steven Tey
           </a>
           .
         </p>
