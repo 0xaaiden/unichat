@@ -51,7 +51,7 @@ Here's how you can contribute:
 
 ## Author
 
-- Aiden ([@steventey](https://twitter.com/aiden0x4))
+- Aiden ([@aiden0x4](https://twitter.com/aiden0x4))
 
 ## License
 
