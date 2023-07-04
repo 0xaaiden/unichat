@@ -97,15 +97,7 @@ export const functions: {
 
     },
   },
-  {
-    name: "cush_topTokens",
-    description: "Get top tokens by liquidity",
-    parameters: {
-      type: "object",
-      properties: {},
-      required: [],
-    },
-  },
+
   {
     name: "cush_allSwapsForUser",
     description: "Get all swaps for a given user (address)",

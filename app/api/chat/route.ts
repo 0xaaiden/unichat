@@ -55,7 +55,7 @@ export async function POST(req: Request) {
     function_call: "auto",
   });
   const initialResponseJson = await initialResponse.json();
-  // console.log("message recieved:", initialResponseJson)
+  console.log("message recieved:", initialResponseJson)
   const initialResponseMessage = initialResponseJson?.choices?.[0]?.message;
 
   let finalResponse;
