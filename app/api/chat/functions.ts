@@ -291,15 +291,14 @@ async function cush_topTokens() {
 
 async function cush_ordersForUser(userAddr: string) {
   const now = new Date();
-  const oneWeekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
-  const unixTimestamp = Math.floor(oneWeekAgo.getTime() / 1000);
+  const oneWeekAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
   const payload = {
     jsonrpc: "2.0",
     method: "cush_marketOrdersForUser",
-    params: [userAddr, oneWeekAgo, unixTimestamp],
+    params: [userAddr, oneWeekAgo.getTime(), now.getTime()],
     id: 1,
   };
-
+  console.log("payload", payload)
   try {
     const response = await fetch("https://cush.uat.gfx.town/ethereum", {
       method: "POST",
