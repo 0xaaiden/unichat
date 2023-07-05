@@ -292,14 +292,11 @@ async function cush_topTokens() {
 async function cush_ordersForUser(userAddr: string) {
   const now = new Date();
   const oneWeekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
-  // const unixTimestamp = Math.floor(oneWeekAgo.getTime() / 1000);
+  const unixTimestamp = Math.floor(oneWeekAgo.getTime() / 1000);
   const payload = {
     jsonrpc: "2.0",
-    method: "cush_ordersForUser",
-    params: [
-      userAddr,
-      // add unix timestamp 1 week before now in unix ms
-    ],
+    method: "cush_marketOrdersForUser",
+    params: [userAddr, oneWeekAgo, unixTimestamp],
     id: 1,
   };
 

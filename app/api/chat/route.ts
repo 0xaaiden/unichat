@@ -102,7 +102,7 @@ export async function POST(req: Request) {
             setTimeout(
               r,
               // get a random number between 10ms and 30ms to simulate a random delay
-              Math.floor(Math.random() * 5 + 5),
+              Math.floor(Math.random() * 0),
             ),
           );
         }
