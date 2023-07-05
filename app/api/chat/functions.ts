@@ -7,7 +7,7 @@ type FunctionNames =
   "cush_getPoolFees" 
   | "cush_poolLiquidity"
   | "cush_topTokens"
-  | "cush_allSwapsForUser";
+  | "cush_ordersForUser";
 
 export const functions: {
   name: FunctionNames;
@@ -60,10 +60,10 @@ export const functions: {
       },
       required: ["searchText"],
     },
-  },  
+  },
   {
     name: "cush_poolLiquidity",
-    description: "Get liquidity of a given pool at a given block", 
+    description: "Get liquidity of a given pool at a given block",
     parameters: {
       type: "object",
       properties: {
@@ -75,8 +75,7 @@ export const functions: {
           type: "number",
           description: "Block number to get liquidity at. ",
         },
-
-  },
+      },
       required: ["pool", "block"],
     },
   },
@@ -91,15 +90,13 @@ export const functions: {
 
           description: "Address of the pool to get fees of.",
         },
-
       },
       required: ["poolAddr"],
-
     },
   },
 
   {
-    name: "cush_allSwapsForUser",
+    name: "cush_ordersForUser",
     description: "Get all swaps for a given user (address)",
     parameters: {
       type: "object",
@@ -112,7 +109,6 @@ export const functions: {
       required: ["userAddr"],
     },
   },
-
 ];
 
 // Generate functions based on API endpoints
@@ -293,18 +289,17 @@ async function cush_topTokens() {
   }
 }
 
-async function cush_allSwapsForUser(userAddr: string) {
+async function cush_ordersForUser(userAddr: string) {
   const now = new Date();
   const oneWeekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
-  const unixTimestamp = Math.floor(oneWeekAgo.getTime() / 1000);
+  // const unixTimestamp = Math.floor(oneWeekAgo.getTime() / 1000);
   const payload = {
     jsonrpc: "2.0",
-    method: "cush_allSwapsForUser",
-    params: [userAddr,
-    // add unix timestamp 1 week before now in unix ms
-unixTimestamp,
-    // add unix timestamp now
-  0],
+    method: "cush_ordersForUser",
+    params: [
+      userAddr,
+      // add unix timestamp 1 week before now in unix ms
+    ],
     id: 1,
   };
 
@@ -408,7 +403,7 @@ export async function runFunction(name: string, args: any) {
       return await cush_topTokens();
         
     case "cush_allSwapsForUser":
-      return await cush_allSwapsForUser(args["userAddr"]);
+      return await cush_ordersForUser(args["userAddr"]);
         
     
     default:
