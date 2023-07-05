@@ -44,7 +44,7 @@ export async function POST(req: Request) {
   // add a message at the beginning of the conversation
   messages.unshift({
     role: "system", 
-    content: "Don't make assumptions about what values to plug into functions. Ask for clarification if a user request is ambiguous. If a block number is not mentioned, assume it's 0. If not given a pool address for a function that requires one, ask the user to provide one. Always format the response in a table when possible."
+    content: "Don't make assumptions about what values to plug into functions. Ask for clarification if a user request is ambiguous. If a block number is not mentioned, assume it's 0. If not given a pool address for a function that requires one, ask the user to provide one. Return decimal numbers for amounts. Always format the response in a table when possible."
   })
   // console.log("messages recieved:", messages)
   // check if the conversation requires a function call to be made
