@@ -401,11 +401,10 @@ export async function runFunction(name: string, args: any) {
       return await cush_getPoolFees(args["poolAddr"]);
     case "cush_topTokens":
       return await cush_topTokens();
-        
-    case "cush_allSwapsForUser":
+
+    case "cush_ordersForUser":
       return await cush_ordersForUser(args["userAddr"]);
-        
-    
+
     default:
       return null;
   }
