@@ -5,7 +5,7 @@ import Toaster from "./toaster";
 import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] });
-// 
+//
 export const metadata = {
   title: "UniChat – Chat with Uniswap v3 using natural language",
   description:
