@@ -43,9 +43,10 @@ export async function POST(req: Request) {
   const { messages } = await req.json();
   // add a message at the beginning of the conversation
   messages.unshift({
-    role: "system", 
-    content: "Don't make assumptions about what values to plug into functions. Ask for clarification if a user request is ambiguous. If a block number is not mentioned, assume it's 0. If not given a pool address for a function that requires one, ask the user to provide one. Always format the response in a table when possible. Transaction hashes should link to etherscan transaction"
-  })
+    role: "system",
+    content:
+      "Don't make assumptions about what values to plug into functions. Ask for clarification if a user request is ambiguous. If a block number is not mentioned, assume it's 0. If not given a pool address for a function that requires one, ask the user to provide one. Always format the response in a table when possible. Transaction hashes should link to etherscan transaction",
+  });
   // console.log("messages recieved:", messages)
   // check if the conversation requires a function call to be made
   const initialResponse = await openai.createChatCompletion({
@@ -81,12 +82,10 @@ export async function POST(req: Request) {
     // const msg = await finalResponse.json();
     // console.log("final response:", msg);
     try {
-    const stream = OpenAIStream(finalResponse);
-        return new StreamingTextResponse(stream);
-
-    }
-    catch (e) {
-      console.log(e)
+      const stream = OpenAIStream(finalResponse);
+      return new StreamingTextResponse(stream);
+    } catch (e) {
+      console.log(e);
     }
     // Respond with the stream
   } else {

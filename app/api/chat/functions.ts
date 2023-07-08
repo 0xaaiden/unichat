@@ -1,10 +1,10 @@
 // import { log } from "console";
 
 type FunctionNames =
-  | "cush_getV3Pool"|
-  "cush_liveBlock"|
-  "cush_search" |
-  "cush_getPoolFees" 
+  | "cush_getV3Pool"
+  | "cush_liveBlock"
+  | "cush_search"
+  | "cush_getPoolFees"
   | "cush_poolLiquidity"
   | "cush_topTokens"
   | "cush_ordersForUser";
@@ -112,7 +112,11 @@ export const functions: {
 ];
 
 // Generate functions based on API endpoints
-async function cush_getV3Pool(target_pool: string, block: number, numObs: number) {
+async function cush_getV3Pool(
+  target_pool: string,
+  block: number,
+  numObs: number,
+) {
   // Implement the logic to get V3 pool snapshot address based on the provided API endpoint
   //add method to payload, method name is cush_getV3Pool
   //add params to payload, params is an array of strings
@@ -123,29 +127,26 @@ async function cush_getV3Pool(target_pool: string, block: number, numObs: number
     id: 1,
   };
   try {
-    const response = await fetch("https://cush.uat.gfx.town/ethereum", {
-    method: "POST",
-    body: JSON.stringify(payload),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+    const response = await fetch("https://cush.gfx.xyz/ethereum", {
+      method: "POST",
+      body: JSON.stringify(payload),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-  const result = await response.json();
-  // remove positions and ticks from result
-  const { Positions, Ticks, ...rest } = result.result;
+    const result = await response.json();
+    // remove positions and ticks from result
+    const { Positions, Ticks, ...rest } = result.result;
     // console.log("fetch result: ", rest);
 
-  // return result
-  return rest;
-  
-} catch (error) {
+    // return result
+    return rest;
+  } catch (error) {
     // save error to log file
     console.log("error: ", payload, error);
-    return error
-
+    return error;
   }
-
 }
 
 // get liveBlock
@@ -158,7 +159,7 @@ async function cush_liveBlock() {
     id: 1,
   };
   try {
-    const response = await fetch("https://cush.uat.gfx.town/ethereum", {
+    const response = await fetch("https://cush.gfx.xyz/ethereum", {
       method: "POST",
       body: JSON.stringify(payload),
       headers: {
@@ -175,7 +176,6 @@ async function cush_liveBlock() {
   }
 }
 
-
 async function cush_search(searchText: string) {
   const payload = {
     jsonrpc: "2.0",
@@ -184,7 +184,7 @@ async function cush_search(searchText: string) {
     id: 1,
   };
   try {
-    const response = await fetch("https://cush.uat.gfx.town/ethereum", {
+    const response = await fetch("https://cush.gfx.xyz/ethereum", {
       method: "POST",
       body: JSON.stringify(payload),
       headers: {
@@ -196,12 +196,9 @@ async function cush_search(searchText: string) {
     console.log("fetch result: ", payload, result);
     return result.result;
   } catch (error) {
-    
     console.log("error: ", payload, error);
     return error;
-
   }
-
 }
 
 async function cush_poolLiquidity(pool: string, block: number) {
@@ -213,23 +210,21 @@ async function cush_poolLiquidity(pool: string, block: number) {
     id: 1,
   };
   try {
-    const response = await fetch("https://cush.uat.gfx.town/ethereum", {
+    const response = await fetch("https://cush.gfx.xyz/ethereum", {
       method: "POST",
       body: JSON.stringify(payload),
       headers: {
         "Content-Type": "application/json",
       },
     });
-    
+
     const result = await response.json();
     // console.log("fetch result: ", result);
     return result.result;
   } catch (error) {
-      console.log("error: ", payload, error);
-      return error;
+    console.log("error: ", payload, error);
+    return error;
   }
-
-
 }
 
 async function cush_getPoolFees(poolAddr: string) {
@@ -241,7 +236,7 @@ async function cush_getPoolFees(poolAddr: string) {
     id: 1,
   };
   try {
-    const response = await fetch("https://cush.uat.gfx.town/ethereum", {
+    const response = await fetch("https://cush.gfx.xyz/ethereum", {
       method: "POST",
       body: JSON.stringify(payload),
       headers: {
@@ -252,8 +247,7 @@ async function cush_getPoolFees(poolAddr: string) {
     const result = await response.json();
     // console.log("fetch result: ", result);
     return result.result;
-  } catch (error) { 
-
+  } catch (error) {
     console.log("error: ", payload, error);
     return error;
   }
@@ -268,8 +262,7 @@ async function cush_topTokens() {
   };
 
   try {
-
-    const response = await fetch("https://cush.uat.gfx.town/ethereum", {
+    const response = await fetch("https://cush.gfx.xyz/ethereum", {
       method: "POST",
       body: JSON.stringify(payload),
 
@@ -285,7 +278,6 @@ async function cush_topTokens() {
     console.log("error: ", payload, error);
 
     return error;
-
   }
 }
 
@@ -298,9 +290,9 @@ async function cush_ordersForUser(userAddr: string) {
     params: [userAddr, oneWeekAgo.getTime(), now.getTime()],
     id: 1,
   };
-  console.log("payload", payload)
+  console.log("payload", payload);
   try {
-    const response = await fetch("https://cush.uat.gfx.town/ethereum", {
+    const response = await fetch("https://cush.gfx.xyz/ethereum", {
       method: "POST",
       body: JSON.stringify(payload),
 
