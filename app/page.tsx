@@ -205,7 +205,7 @@ export default function Chat() {
           </button>
         </form>
         <p className="flex items-center justify-center  gap-2 text-center text-xs text-gray-400">
-          <span className="text-md">Sponsored by</span>{" "}
+          <span className="text-md">In partnership with</span>{" "}
           {/* Impor svg and link to aperture FInance website */}
           <a
             href="https://aperture.finance"
