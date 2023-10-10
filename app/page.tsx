@@ -10,6 +10,8 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Textarea from "react-textarea-autosize";
 import { toast } from "sonner";
+import aperture from "../public/aperture.svg";
+import Image from "next/image";
 
 const examples = [
   "Search all pools trading UNI and return their 24H volume, fees collected, and pairs traded",
@@ -202,24 +204,21 @@ export default function Chat() {
             )}
           </button>
         </form>
-        <p className="text-center text-xs text-gray-400">
-          Built with{" "}
+        <p className="flex items-center justify-center  gap-2 text-center text-xs text-gray-400">
+          <span className="text-md">Sponsored by</span>{" "}
+          {/* Impor svg and link to aperture FInance website */}
           <a
-            href="https://platform.openai.com/docs/guides/gpt/function-calling"
+            href="https://aperture.finance"
             target="_blank"
             rel="noopener noreferrer"
-            className="transition-colors hover:text-black"
+            className="underline"
           >
-            OpenAI Functions.
-          </a>{" "}
-          Inspired by{" "}
-          <a
-            href="https://github.com/steven-tey"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="transition-colors hover:text-black"
-          >
-            Steven Tey
+            <Image
+              src={aperture}
+              alt="Aperture Finance"
+              width={120}
+              height={30}
+            />
           </a>
           .
         </p>
