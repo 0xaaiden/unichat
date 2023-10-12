@@ -15,9 +15,9 @@ import Image from "next/image";
 
 const examples = [
   "Search all pools trading UNI and return their 24H volume, fees collected, and pairs traded",
-  "Get a V3 snapshot for the pool PEPE/ETH, at address 0x113.. at block  17294375",
+  "Get a V3 snapshot for the pool PEPE/ETH, at address 0x11950d141ecb863f01007add7d1a342041227b58 at block  17294375",
   "What pools are trading LDO with the most liquidity?",
-  "Get recent swaps for address 0x9cc..",
+  "Get recent swaps for address 0x9c8b59443fd54567e33805fb389c3d9b9196ed2e",
 ];
 
 export default function Chat() {
@@ -47,13 +47,8 @@ export default function Chat() {
   return (
     <main className="flex flex-col items-center justify-between pb-40">
       <div className="absolute top-5 hidden w-full justify-between px-5 sm:flex">
-        <a
-          href="/"
-          target="_blank"
-          className="rounded-lg p-2 transition-colors duration-200 hover:bg-stone-100 sm:bottom-auto"
-        >
+        <div className="rounded-lg p-2 transition-colors duration-200 hover:bg-stone-100 sm:bottom-auto">
           {/* <VercelIcon /> */}
-
           <div className="grid grid-cols-2 justify-start gap-2 lg:grid-cols-1">
             <span className="blockv2 h-8 w-auto sm:h-10">UniChat</span>
             <p className="hidden flex-col items-center justify-center gap-2  text-center text-sm text-xs text-gray-400 md:flex">
@@ -70,7 +65,7 @@ export default function Chat() {
               .
             </p>
           </div>
-        </a>
+        </div>
         <a
           href="https://github.com/0xaaiden/UniChat"
           target="_blank"
@@ -158,7 +153,7 @@ export default function Chat() {
               swap data.
             </p>
           </div>
-          <div className="flex flex-col  space-y-4 whitespace-break-spaces border-t border-gray-200 bg-gray-50 p-7 sm:p-10">
+          <div className="flex flex-col  space-y-4 break-all border-t border-gray-200 bg-gray-50 p-7 sm:p-10">
             {examples.map((example, i) => (
               <button
                 key={i}
