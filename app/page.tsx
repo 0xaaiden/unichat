@@ -226,9 +226,26 @@ export default function Chat() {
             rel="noopener noreferrer"
             className="underline"
           >
-            <OkuSVG color={"black"} width={58} />
+            <OkuSVG
+              color={"black"}
+              width={58}
+              className="w-[48px] md:w-[58px]"
+            />
           </a>
-          .
+          <span className="flex md:hidden">and</span>
+          <a
+            href="https://aperture.finance"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline"
+          >
+            <Image
+              src={aperture}
+              alt="Aperture Finance"
+              width={62}
+              className="flex md:hidden"
+            />
+          </a>
         </p>
       </div>
     </main>
