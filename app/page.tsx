@@ -221,7 +221,7 @@ export default function Chat() {
           <span className="text-md">Supported by</span>{" "}
           {/* Impor svg and link to aperture FInance website */}
           <a
-            href="https://aperture.finance"
+            href="https://oku.trade"
             target="_blank"
             rel="noopener noreferrer"
             className="underline"
