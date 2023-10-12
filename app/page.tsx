@@ -15,9 +15,9 @@ import Image from "next/image";
 
 const examples = [
   "Search all pools trading UNI and return their 24H volume, fees collected, and pairs traded",
-  "Get a V3 snapshot for the pool PEPE/ETH, at address 0x11950d141ecb863f01007add7d1a342041227b58 at block  17294375",
+  "Get a V3 snapshot for the pool PEPE/ETH, at address 0x113.. at block  17294375",
   "What pools are trading LDO with the most liquidity?",
-  "Get recent swaps for address 0x9c8b59443fd54567e33805fb389c3d9b9196ed2e",
+  "Get recent swaps for address 0x9cc..",
 ];
 
 export default function Chat() {
@@ -45,16 +45,31 @@ export default function Chat() {
   const disabled = isLoading || input.length === 0;
 
   return (
-    <main className=" flex flex-col items-center justify-between pb-40">
-      <div className="absolute top-5   hidden w-full justify-between px-5 sm:flex">
+    <main className="flex flex-col items-center justify-between pb-40">
+      <div className="absolute top-5 hidden w-full justify-between px-5 sm:flex">
         <a
           href="/"
-          // target="_blank"
-          className="rounded-lg  transition-colors duration-200 hover:bg-stone-100 sm:bottom-auto"
+          target="_blank"
+          className="rounded-lg p-2 transition-colors duration-200 hover:bg-stone-100 sm:bottom-auto"
         >
           {/* <VercelIcon /> */}
 
-          <span className="blockv2 h-8 w-auto sm:h-10">UniChat</span>
+          <div className="grid grid-cols-2 justify-start gap-2 lg:grid-cols-1">
+            <span className="blockv2 h-8 w-auto sm:h-10">UniChat</span>
+            <p className="hidden flex-col items-center justify-center gap-2  text-center text-sm text-xs text-gray-400 md:flex">
+              <span className="text-md">In partnership with</span>{" "}
+              {/* Impor svg and link to aperture FInance website */}
+              <a
+                href="https://aperture.finance"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline"
+              >
+                <Image src={aperture} alt="Atperture Finance" width={80} />
+              </a>
+              .
+            </p>
+          </div>
         </a>
         <a
           href="https://github.com/0xaaiden/UniChat"
@@ -87,7 +102,7 @@ export default function Chat() {
                 )}
               </div>
               <ReactMarkdown
-                className="prose mt-1 w-full overflow-auto break-words prose-p:leading-relaxed"
+                className="prose mt-1 w-full break-words prose-p:leading-relaxed"
                 remarkPlugins={[remarkGfm]}
                 components={{
                   // open links in new tab
@@ -143,11 +158,11 @@ export default function Chat() {
               swap data.
             </p>
           </div>
-          <div className="flex flex-col space-y-4 border-t border-gray-200 bg-gray-50 p-7 sm:p-10">
+          <div className="flex flex-col  space-y-4 whitespace-break-spaces border-t border-gray-200 bg-gray-50 p-7 sm:p-10">
             {examples.map((example, i) => (
               <button
                 key={i}
-                className="rounded-md border border-gray-200 bg-white px-5 py-3 text-left text-sm text-gray-500 transition-all duration-75 hover:border-black hover:text-gray-700 active:bg-gray-50"
+                className=" whitespace-pre-wrap break-words rounded-md border border-gray-200 bg-white px-5 py-3 text-left text-sm text-gray-500 transition-all duration-75 hover:border-black hover:text-gray-700 active:bg-gray-50"
                 onClick={() => {
                   setInput(example);
                   inputRef.current?.focus();
@@ -204,24 +219,6 @@ export default function Chat() {
             )}
           </button>
         </form>
-        <p className="flex items-center justify-center  gap-2 text-center text-xs text-gray-400">
-          <span className="text-md">In partnership with</span>{" "}
-          {/* Impor svg and link to aperture FInance website */}
-          <a
-            href="https://aperture.finance"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline"
-          >
-            <Image
-              src={aperture}
-              alt="Aperture Finance"
-              width={120}
-              height={30}
-            />
-          </a>
-          .
-        </p>
       </div>
     </main>
   );
