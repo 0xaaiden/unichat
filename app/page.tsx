@@ -226,7 +226,7 @@ export default function Chat() {
             rel="noopener noreferrer"
             className="underline"
           >
-            <OkuSVG color={"black"} width={48} />
+            <OkuSVG color={"black"} width={58} />
           </a>
           .
         </p>
