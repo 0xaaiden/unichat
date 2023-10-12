@@ -5,7 +5,7 @@ import remarkGfm from "remark-gfm";
 const ETHEREUM_ADDRESS_PATTERN = /0x[a-fA-F0-9]{40}/g;
 
 // Function to wrap Ethereum addresses in markdown link syntax
-const preprocessContent = (content) => {
+const preprocessContent = (content: string) => {
   return content.replace(ETHEREUM_ADDRESS_PATTERN, (match) => {
     return `[${match}](https://oku.trade/info/ethereum/pool/${match})`;
   });
