@@ -12,6 +12,8 @@ import Textarea from "react-textarea-autosize";
 import { toast } from "sonner";
 import aperture from "../public/aperture.svg";
 import Image from "next/image";
+import MarkdownRenderer from "./LinkOku";
+import OkuSVG from "./oku";
 
 const examples = [
   "Search all pools trading UNI and return their 24H volume, fees collected, and pairs traded",
@@ -79,7 +81,7 @@ export default function Chat() {
           <div
             key={i}
             className={clsx(
-              "flex w-full items-center justify-center border-b border-gray-200 py-8",
+              "flex w-full items-center justify-center  border-b border-gray-200 py-8",
               message.role === "user" ? "bg-white" : "bg-gray-100",
             )}
           >
@@ -96,8 +98,8 @@ export default function Chat() {
                   <Bot width={20} />
                 )}
               </div>
-              <ReactMarkdown
-                className="prose mt-1 w-full break-words prose-p:leading-relaxed"
+              {/* <ReactMarkdown
+                className="prose mt-1 w-full overflow-auto break-words prose-p:leading-relaxed"
                 remarkPlugins={[remarkGfm]}
                 components={{
                   // open links in new tab
@@ -107,7 +109,8 @@ export default function Chat() {
                 }}
               >
                 {message.content}
-              </ReactMarkdown>
+              </ReactMarkdown> */}
+              <MarkdownRenderer content={message.content} />
             </div>
           </div>
         ))
@@ -214,6 +217,19 @@ export default function Chat() {
             )}
           </button>
         </form>
+        <p className="flex items-center justify-center  gap-2 text-center text-xs text-gray-400">
+          <span className="text-md">Supported by</span>{" "}
+          {/* Impor svg and link to aperture FInance website */}
+          <a
+            href="https://aperture.finance"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline"
+          >
+            <OkuSVG color={"black"} width={48} />
+          </a>
+          .
+        </p>
       </div>
     </main>
   );

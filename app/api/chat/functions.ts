@@ -193,7 +193,7 @@ async function cush_search(searchText: string) {
     });
 
     const result = await response.json();
-    console.log("fetch result: ", payload, result);
+    // console.log("fetch result: ", payload, result);
     return result.result;
   } catch (error) {
     console.log("error: ", payload, error);
