@@ -14,7 +14,7 @@ import aperture from "../public/aperture.svg";
 import Image from "next/image";
 import MarkdownRenderer from "./LinkOku";
 import OkuSVG from "./oku";
-
+import Aperture from "./aperture";
 const examples = [
   "Search all pools trading UNI and return their 24H volume, fees collected, and pairs traded",
   "Get a V3 snapshot for the pool PEPE/ETH, at address 0x11950d141ecb863f01007add7d1a342041227b58 at block  17294375",
@@ -234,17 +234,12 @@ export default function Chat() {
           </a>
           <span className="flex md:hidden">and</span>
           <a
-            href="https://aperture.finance"
+            href="https://www.aperture.finance/?source=Unichat&category=banner&tag=General&title=unichat"
             target="_blank"
             rel="noopener noreferrer"
             className="underline"
           >
-            <Image
-              src={aperture}
-              alt="Aperture Finance"
-              width={62}
-              className="flex md:hidden"
-            />
+            <Aperture color={"black"} width={95} className="md:hidden" />
           </a>
         </p>
       </div>
