@@ -57,7 +57,7 @@ export default function Chat() {
               <span className="text-md">In partnership with</span>{" "}
               {/* Impor svg and link to aperture FInance website */}
               <a
-                href="https://aperture.finance"
+                href="https://www.aperture.finance/?source=Unichat&category=banner&tag=General&title=unichat"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline"
